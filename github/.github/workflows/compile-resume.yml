@@ -1,0 +1,67 @@
+name: Compile resume PDF
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - build/resume.tex
+      - build/request.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: resume-pdf-builder
+  cancel-in-progress: false
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate build request
+        id: request
+        shell: bash
+        run: |
+          set -euo pipefail
+          application_id="$(jq -r '.applicationId' build/request.json)"
+          build_id="$(jq -r '.buildId' build/request.json)"
+          kind="$(jq -r '.kind' build/request.json)"
+
+          [[ "$application_id" =~ ^[A-Za-z0-9-]+$ ]]
+          [[ "$build_id" =~ ^[A-Za-z0-9-]+$ ]]
+          [[ "$kind" == "preview" || "$kind" == "final" ]]
+
+          echo "application_id=$application_id" >> "$GITHUB_OUTPUT"
+          echo "build_id=$build_id" >> "$GITHUB_OUTPUT"
+          echo "kind=$kind" >> "$GITHUB_OUTPUT"
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: resume.tex
+          working_directory: build
+          compiler: latexmk
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Commit compiled PDF
+        shell: bash
+        env:
+          APPLICATION_ID: ${{ steps.request.outputs.application_id }}
+          BUILD_ID: ${{ steps.request.outputs.build_id }}
+          KIND: ${{ steps.request.outputs.kind }}
+        run: |
+          set -euo pipefail
+          destination="pdf/${APPLICATION_ID}/${BUILD_ID}.pdf"
+          mkdir -p "$(dirname "$destination")"
+          cp build/resume.pdf "$destination"
+
+          git config user.name "resume-pdf-bot"
+          git config user.email "resume-pdf-bot@users.noreply.github.com"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git add "$destination"
+          git commit -m "Add ${KIND} PDF ${BUILD_ID} [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"
