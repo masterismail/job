@@ -8,8 +8,10 @@
 \usepackage{xcolor}
 \usepackage{tabularx}
 \usepackage{microtype}
-\input{glyphtounicode}
-\pdfgentounicode=1
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
@@ -27,19 +29,19 @@
 \end{center}
 \vspace{-8pt}
 \section{Professional Summary}
-AI Trainer with experience developing and refining AI models, collaborating with cross‑functional teams to deliver training pipelines. Also contributed to a PostgreSQL‑based AI project, applying core technical skills in real‑time data handling.
+AI Trainer with hands‑on AI and API work, complemented by a Python project delivering backend utilities. Proficient in GitHub, Postman, and Python for automation and integration tasks.
 \section{Skills}
-skill one \textbullet{} skill two
+github \textbullet{} postman \textbullet{} Python
 \section{Experience}
-\resumeEntry{WeAVE}{2024–Present}{AI Trainer}{City}
+\resumeEntry{weave}{2024–Present}{AI Trainer}{City}
 \begin{itemize}
-  \item Trained AI models at WeAVE, working with developers to improve model performance and deployment pipelines.
+  \item Delivered AI model training and API integration, using GitHub for version control and Postman for API testing to support production‑grade services.
 \end{itemize}
 \vspace{-2pt}
 \section{Projects}
-\resumeEntry{AI Project}{2024}{Project}{}
+\resumeEntry{Policyengine}{2025}{Project}{}
 \begin{itemize}
-  \item Implemented a PostgreSQL‑backed AI project, applying core technical skills to manage data for real‑time applications.
+  \item Built Python scripts for the Policyengine project that automated data‑processing workflows and streamlined backend operations.
 \end{itemize}
 \vspace{-2pt}
 \end{document}
