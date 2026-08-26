@@ -1,47 +1,102 @@
-\documentclass[10pt,letterpaper]{article}
-\usepackage[margin=0.55in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{enumitem}
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
 \usepackage{titlesec}
-\usepackage[hidelinks]{hyperref}
-\usepackage{xcolor}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
 \usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
 \usepackage{microtype}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
 \ifdefined\pdfgentounicode
   \input{glyphtounicode}
   \pdfgentounicode=1
 \fi
-\pagestyle{empty}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=0.17in,label=\textbullet,itemsep=1pt,topsep=2pt,parsep=0pt,partopsep=0pt}
-\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\vspace{-3pt}\titlerule]
-\titlespacing*{\section}{0pt}{7pt}{4pt}
-\newcommand{\resumeEntry}[4]{%
-  \textbf{#1} \hfill #2 \\
-  \textit{#3} \hfill \textit{#4}\vspace{-3pt}
+\definecolor{linkcol}{HTML}{1F4E79}
+\hypersetup{colorlinks=true,urlcolor=linkcol,linkcolor=linkcol}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large\bfseries}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\newcommand{\resumeItem}[1]{\item\small{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2} \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-7pt}
 }
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in,label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 \begin{document}
 \begin{center}
-{\LARGE\bfseries Mohammed Ismail}\\[3pt]
-{\small 7032229659 \textbar{} mohdismail.codes@gmail.com}
-\end{center}
+{\Huge \scshape Mohammed Ismail} \\ \vspace{2pt}
+\small \raisebox{-0.1\height}\faPhone\ 7032229659 ~ \raisebox{-0.2\height}\faEnvelope\ \href{mailto:mohdismail.codes@gmail.com}{\underline{mohdismail.codes@gmail.com}} \\ \vspace{2pt}
 \vspace{-8pt}
+\end{center}
 \section{Professional Summary}
-Data engineer with proven Python development experience, building reusable data processing packages and APIs. Skilled in SQL, Git, and Linux environments, with a solid foundation in data analysis and software engineering.
-\section{Skills}
-Python \textbullet{} SQL \textbullet{} Git \textbullet{} Linux
-\section{Experience}
-\resumeEntry{Samagra}{Jun 2024 - Nov 2024}{Data Science Intern — Code for GovTech (C4GT)}{Remote}
-\begin{itemize}
-  \item Developed a reusable Python package for cross‑country policy simulation, enhancing data processing consistency and enabling API‑driven analysis.
-\end{itemize}
-\vspace{-2pt}
+Data engineer with 4+ years of experience delivering Python‑based data solutions, focusing on data quality, production monitoring, and API integration. Demonstrated leadership in large open‑source communities and student tech clubs.
 \section{Education}
-\resumeEntry{St. Martin's Engineering College}{2021 - 2026}{B.Tech in Computer Science and Design}{Hyderabad - India}
-\begin{itemize}
-  \item Relevant coursework: Data Structures - Algorithms - DBMS - Operating Systems - Computer Networks - Machine Learning - Deep Learning - NLP - Computer Vision.
+\resumeSubHeadingListStart
+\resumeSubheading{St. Martin's Engineering College (JNTU Hyderabad)}{2021–2026 (expected)}{B.Tech in Computer Science and Design}{Hyderabad, India}
+\resumeItemListStart
+  \resumeItem{Relevant coursework: Data Structures, Algorithms, DBMS, Operating Systems, Computer Networks, Machine Learning, Deep Learning, NLP, Computer Vision.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{Experience}
+\resumeSubHeadingListStart
+\resumeSubheading{Weave}{Nov 2025–Present}{AI Trainer — Data Quality, Analytics \& Management}{Remote}
+\resumeItemListStart
+  \resumeItem{Reviewed and improved data used to train AI models, enhancing overall data quality.}
+  \resumeItem{Monitored live production and intervened via API calls to resolve AI lag, ensuring continuous operation.}
+\resumeItemListEnd
+\resumeSubheading{Samagra}{Jun 2024–Nov 2024}{Data Science Intern — Code for GovTech (C4GT)}{Remote}
+\resumeItemListStart
+  \resumeItem{Built a unified Python package for cross‑country economic policy simulation, creating a modular architecture.}
+  \resumeItem{Developed interactive Plotly visualizations to analyze budget impact, income deciles, and poverty metrics, supporting data‑driven insights.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{Leadership \& Community}
+\resumeSubHeadingListStart
+\resumeSubheading{Code for GovTech (C4GT)}{Nov 2024–Jul 2025}{Community Manager}{Remote}
+\resumeItemListStart
+  \resumeItem{Managed an open‑source community of 10,000+ members, coordinating developer relations and program initiatives.}
+\resumeItemListEnd
+\resumeSubheading{Google Developer Student Club (GDSC), St. Martin's}{Jun 2023–Jun 2024}{Lead}{Hyderabad, India}
+\resumeItemListStart
+  \resumeItem{Founded and expanded a Google Developer Student Club to 800+ members, organizing events and mentorship programs.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in,label={}]
+  \small{\item{
+    \textbf{Languages}{: Python, Java, C, hona} \\
+    \textbf{Areas}{: Data analysis, Machine Learning, Deep Learning, NLP, Computer Vision} \\
+    \textbf{Communication}{: Cold calling, appointment setting, objection handling, CRM tracking} \\
+    \textbf{Tools}{: Git, GitHub, Linux} \\
+  }}
 \end{itemize}
-\vspace{-2pt}
+\vspace{-16pt}
 \end{document}
